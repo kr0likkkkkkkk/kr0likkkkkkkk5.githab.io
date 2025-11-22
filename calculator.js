@@ -7,7 +7,6 @@ function calculateCost(event) {
     const resultDiv = document.getElementById("result");
     const errorDiv = document.getElementById("quantityError");
     
-    // Скрываем предыдущие сообщения
     errorDiv.style.display = 'none';
     resultDiv.style.display = 'none';
     
@@ -20,24 +19,23 @@ function calculateCost(event) {
         return false;
     }
     
-    // Преобразуем в число
+    // Преобразование в число
     const quantityNum = parseInt(quantity);
     const productPrice = parseInt(productSelect.value);
     
-    // Проверяем, что количество больше 0
     if (quantityNum <= 0) {
         errorDiv.textContent = 'Количество должно быть больше 0';
         errorDiv.style.display = 'block';
         return false;
     }
     
-    // Вычисляем стоимость
+    // Стоимость
     const totalCost = productPrice * quantityNum;
     
-    // Форматируем вывод
+    // Вывод
     const formattedCost = totalCost.toLocaleString('ru-RU');
     
-    // Выводим результат
+    // Результат
     resultDiv.innerHTML = `
         <h3>Стоимость заказа:</h3>
         <p>Товар: ${productSelect.options[productSelect.selectedIndex].text}</p>
@@ -53,13 +51,14 @@ function calculateCost(event) {
 window.addEventListener('DOMContentLoaded', function (event) {
     console.log("DOM fully loaded and parsed");
     
-    // Находим кнопку и добавляем обработчик
+    // Кнопка добавления обработчика
     const calculateBtn = document.getElementById("calculateBtn");
     calculateBtn.addEventListener("click", calculateCost);
     
-    // Добавляем обработчик на поле ввода для скрытия ошибки при вводе
+    // Обработчик, скрытие ошибки 
     const quantityInput = document.getElementsByName("quantity")[0];
     quantityInput.addEventListener('input', function() {
         document.getElementById("quantityError").style.display = 'none';
     });
+
 });
